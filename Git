@@ -5,3 +5,99 @@ add content
 commit
 
 https://desktop.github.com/
+
+
+Git 分布式版本控制技术:版本控制，版本管理，远程仓库，分支协作
+workspace	=>add=>	stage =>commit=> repository =>push=> remote
+workspace	<=checkout<=  repository  <=clone/fetch/pull<= remote
+
+
+创建用户名和账号
+
+	dell@DESKTOP-8IUPUIQ MINGW64 ~
+	$ git config --global user.name "EricYangGitR"
+
+	dell@DESKTOP-8IUPUIQ MINGW64 ~
+	$ git config --global user.email "522548843@qq.com"
+
+	$ git config user.name
+	EricYangGitR
+
+
+创建目录以及创建仓库：
+
+	dell@DESKTOP-8IUPUIQ MINGW64 ~
+	$ cd /d/Project
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project
+	$ ls
+	AsyncTest/  CodeDoc/  GitHub/  Python/
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project
+	$ mkdir Git
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project
+	$ cd Git
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/Git
+	$ mkdir git-learn
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn
+	$ git init
+	Initialized empty Git repository in D:/Project/Git/git-learn/.git/
+
+创建文件 add操作添加到缓冲区，commit操作提交到repository
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ echo "hello world" >> readme.txt
+add:
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ git add -A
+	warning: LF will be replaced by CRLF in readme.txt.
+	The file will have its original line endings in your working directory.
+
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ git status
+	On branch master
+
+	No commits yet
+
+	Changes to be committed:
+	  (use "git rm --cached <file>..." to unstage)
+
+	        new file:   readme.txt
+
+commit:
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ git commit -m"add readme.txt"
+	[master (root-commit) 5b0c7ac] add readme.txt
+	 1 file changed, 1 insertion(+)
+	 create mode 100644 readme.txt
+
+
+推送到github:
+remote github:
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ git remote add origin https://github.com/EricYangW/git-learn.git
+push 操作:
+	dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+	$ git push -u origin master
+
+	Counting objects: 3, done.
+	Writing objects: 100% (3/3), 229 bytes | 229.00 KiB/s, done.
+	Total 3 (delta 0), reused 0 (delta 0)
+	To https://github.com/EricYangW/git-learn.git
+	 * [new branch]      master -> master
+	Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+
+
+
+Clone 到本地:
+dell@DESKTOP-8IUPUIQ MINGW64 /d/Project/git/git-learn (master)
+$ git clone https://github.com/EricYangW/Notes
+Cloning into 'Notes'...
+remote: Counting objects: 15, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 15 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (15/15), done.

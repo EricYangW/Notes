@@ -101,3 +101,39 @@ remote: Counting objects: 15, done.
 remote: Compressing objects: 100% (13/13), done.
 remote: Total 15 (delta 3), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (15/15), done.
+
+
+
+Git 常用命令:
+安装配置:config	help	status
+
+示例1
+git config --global user.name "xxx"
+git config --global user.email "xxx@xx"
+git; git help 获取命令列表
+git status 查看当前工作去和缓存区的状态
+ssh -keygen -t rsa -C "your_email@xxx.com"
+ssh -T git@github.com 将公钥绑定github后尝试建立ssh链接
+
+版本记录: 
+init(创建仓库) add(修改缓存) commit(提交修改) reset(版本回退)
+checkout(撤销修改) diff(比较文件) log (版本列表) reflog(版本历史)
+
+例子：
+git init
+git add readme.txt
+git add -A
+git commit -m"desciption"
+git commit --amend 修改覆盖上个一次commit
+git commit -a -m "description" 先缓存在提交
+
+v1-v2-v3-v4-v5
+v5->v2
+git reset HEAD~3
+git reset v5 回到v5版
+
+ 远程仓库:
+ remote(设置远程) push(推送远程) clone(克隆远程) fetch(跟新远程) pull(合并远程)
+
+ 分支协作:
+ branch(设置分支) checkout(切换分支) merge(合并分支) rebase(重演分支) stash(储藏管理) tag(标签管理)

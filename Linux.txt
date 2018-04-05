@@ -1,0 +1,427 @@
+命令：
+【A@B ~】B主机上A用户， 主机只显示.号之前 如Eric.Yang 主机显示Eric ~当前工作目录
+ls 列出当前目录下的文件和目录
+uname 显示当前系统信息：Linux
+uname -r(参数) 返回内核版本号
+uname -a 或者 uname --a
+firefox 打开火狐浏览器，并命令行停止在当前命令
+firefox & 将此命令放在后台去运行， 打开火狐浏览器，命令行可以继续工作
+TAB 键 ,打出前几个字符 tab 自动补全此命令， （也可以补全文件名），（无法补全参数）
+clear 清屏
+双击 tab 显示当前操作系统的所有命令
+上下键，历史命令
+history 显示所有历史命令
+sh 脚本:
+		!!		重复前一个命令
+		!字符	重复前一个以此字符开头的命令
+		!num	重复历史记录里序号为num的命令
+		!?abc	重复执行之前命令中包含abc的命令
+		!-n		重复之前第n个命令
+ctrl R： 历史命令搜索 (everse-i-search)
+esc. : 调用上个命令的参数
+通配符: 
+		* 匹配一个或多个 M* 以M 开头的字符串
+		？匹配任意一个字符 M？ 以M开头的两个字符
+		[0-9]匹配0-9中的一个数字
+		[abc]匹配abc中的一个字符
+		[^abc]匹配abc以外的一个字符
+		ls Do[ab]ument 报错，匹配不到 ls Document
+切换用户:
+		切换到某个特定的用户 su - XXX 切换到 XXX
+		su - 切换到 root 使用全新终端
+		su   切换到 root 但还是在当前的用户环境中
+sudo 命令 普通用户使用管理员身份运行命令
+id 显示当前用户信息
+passwd 修改当前用户密码
+
+
+BASH 作业管理
+命令 & 后台运行
+jobs 查看当前在后台运行的作业
+sleep 5000 停止5000s
+ctrl z 暂停当前命令 
+bg + jobs看到的后台命令序号： 继续执行后台命令
+fg + jobs看到的后台命令序号： 将后台作业拉回到前台运行
+
+Linux 文件系统结构
+linux 文件系统倒转的单个树状结构， "/" 根目录 文件系统区分大小写， / 分割（不是反斜线）
+/
+dev boot etc home usr var lib proc ...
+
+
+
+
+[A@B ~] B主机上A用户， 主机只显示.号之前 如Eric.Yang 主机显示Eric ~当前工作目录
+pwd print work directory 打印当前工作目录 /home/EricYang  此目录为账号EricYang 的目录。
+						  root 账号的目录为 /root
+
+max length 255
+touch aaa 创建一个aaa文件 跟新已有文件的时间
+.开头的文件是隐藏文件， 绝大多数为配置文件..
+ls -a 显示所有文件包括隐藏文件
+ls -l 显示详细信息 权限 所属用户，所属组。。。
+ls -R 递归显示子目录结构
+ls -ld 目录 显示目录和链接的详细信息
+file 查看文件类型
+cat 文件名 查看文件内容
+绝对路径 以"/" 以根目录开头， 递归每级目录到达目标目录。
+相对路径 以当前目录为起点， 到达目标路径。受当前目录限制
+
+cd .. 上级目录
+cd . 当前目录
+cd ~ 用户home目录 /home/EricYang
+cd - 上一个工作目录
+cd enter 回到 用户home目录
+
+
+
+
+
+
+
+
+
+
+
+
+文件操作：
+
+复制文件，目录
+cp 源文件 目标文件
+cp -r 源文件夹 目标文件夹
+cp -rv 源文件夹 目标文件夹 显示复制详细信息
+
+移动 重命名 文件或目录
+mv 文件 文件夹
+mv 文件 文件夹/文件2 移动文件并重命名
+mv 文件 文件2 重命名
+
+创建文件删除文件
+touch 文件
+rm 文件
+rm 文件夹
+rm -r 文件夹 删除文件夹下所有文件和此文件夹
+rm -ri 文件夹 删除每个文件时有交互
+rm -rif 文件夹 强制删除 f 覆盖 i
+
+创建目录删除目录
+mkdir dirname
+rmdir dirname dirname中非空则删除失败
+
+
+
+系统目录架构：
+
+/ 根目录包括：
+bin： binary 缩写 可执行的二进制文件
+boot: 引导文件，vmlinuz-...操作系统内核 驱动插件
+dev:  硬件设备 sda1 sda2
+etc:  绝大多数配置文件
+home： 每个用户都有自己的私有文件夹， 保存在home文件夹
+lib: 库文件夹
+lost+found 恢复
+mnt media 挂载
+opt 装大型软件
+proc 系统实时信息， 存在于内存中，内存 cpu 等信息 数字命名的文件夹，对应进程Id cpuinfo meminfo acpi电源
+sbin 超级用户才能执行的命令程序。
+selinux
+sys 系统底层信息
+tmp 临时目录，里面的文件会自动删除
+usr 存放正常的应用软件
+var 存放经常变化的一些信息， 例如log
+
+
+
+
+
+
+Linux 常用命令
+date 当前时间 
+date -u 格林威治时间
+date +%Y--%m--%d 2012--10--02
+date -s "20:20:20"  修改当前日期的时间，需要超级用户权限
+
+hwclock (clock)  查看硬件时间
+cal 查看日历
+
+uptime 查看系统的运行时间， 系统运行了多长时间，负载，用户登陆数目
+帮助命令：man 命令
+echo 显示输入的内容
+cat 文件 显示文件内容
+more 文件 翻页显示文件内容，只能向下翻页 space
+less 文件  上下翻页 按Q退出
+head 文件 显示文件头几行 默认10行
+head -n 3 文件 只显示开透视三行
+tail 文件 显示末尾几行 默认10行 
+tail -n 3 文件 显示文件尾部3行
+tail -f 文件 追踪显示文件更新，日志 ， 
+echo "xxx" >> 文件  将xxx追加到文件的末尾
+
+查看硬件信息
+lspci 列出所有pci设备
+lspci -v 查看详细信息
+lsusb 列出所有usb设备
+lsusb -v 查看设备详细信息
+lsmod 查看当前加载的所有模块（驱动）
+
+shutdown -h now现在关机
+shutdown -h +10 10min  之后
+shutdown -h 23:30 23:30 关机 
+shutdown -r ....
+
+poweroff
+reboot
+
+归档和压缩
+zip 压缩文件名 需要压缩的文件
+unzip 压缩的文件名
+gzip 文件名
+tar 归档命令 将多个文件打包到一个文件
+tar -cvf etcbackup.tar /etc 归档etc文件夹
+tar -xvf etcbackup.tar  释放归档的文件到当前文件夹
+tar -cvzf etcbackup.tar.gz /etc 归档并压缩
+du -sh  文件名 查看文件大小
+
+查找 
+locate keyword 系统查找文件， 数据库中查找，每天跟新一次， updatedb 命令 创建刷新数据库， 扫描所有文件
+find 查找位置 查找参数
+
+find / 根分区查找 . 当前目录查找 
+find . -name *xxx* 当前目录中，从文件名中查找包含 xxx 的文件
+find / -name *.conf 根分区中查找 .conf 结尾的文件
+find / -perm 777 查找硬盘中所有权限是 777 的文件
+find / -type d   返回操作系统的目录 d 代表目录 l 代表链接（快捷方式）
+find . -name "a*" -exec ls -l {} \;   查出所有以a 开头的文件， 并查看文件详细信息，ls -l 显示文件详细
+-user 某个用户的文件 -group  某个组的文件 -ctime 查找某个创建时间的文件 -size 文件大小查找文件
+find / -usr EricYang 查找属于EricYang 的文件
+
+
+
+
+vi vim 文本编辑器
+vim  文件名 打开或新建文件
+命令模式 esc 
+输入模式 i
+ex模式 :
+
+esc 返回命令模式
+命令模式常用命令
+i 移动光标到某个字符，在光标前插入文本
+o 在当前行下插入新行
+dd 删除整行
+yy 复制当前行
+n+yy 将光标下的n行复制，包括光标所在行
+p 将复制的文本放入光标后,貌似会另起一行
+u 撤销上一个操作
+r 替换当前字符
+/ 查找关键字
+
+:w 保存修改不退出
+:q 退出
+:q! 强制退出不保存修改
+:x 保存并退出
+:set number or :set nu 显示行号
+:! 系统命令 执行一个系统命令并显示结果， 按任意键返回vim
+:sh 切换到命令行，ctrl+d 切换回vim 
+
+
+
+
+
+
+磁盘基本概念：
+cylinder 柱面 轨道所在的所有盘片的圆柱型
+sector 扇区
+head 磁头 512字节
+
+磁盘在linux中的表示
+/dev 下
+/dev/sda 
+/dev/sdb
+/dev/sdc
+sd : SATA SCSI SAS USB 
+
+磁盘分区：例如将 /dev/sda 分区 : /dev/sda1 /dev/sda2  每个分区有单个文件
+分区为软件概念：MBR GPT 机制。
+绝大多数为MBR BIOS PC 设备。
+MBR: 512 字节。446（引导程序），16 16 16 16 2
+四个主分区：扩展分区，占用一个主分区，在扩展分区上创建其他逻辑分区。。最多15SCSI逻辑分区
+
+GPT：支持 UEFI 硬件（主板），64 位操作系统，
+
+fdisk 分区工具
+
+mount -o remount,ro,sync,noatime /dev/sdb1 /mnt 重新挂载设备/dev/sdb1  以只读（rw：读写），不使用缓存（async：使用缓存），不记录访问时间（atime:记录访问时间）
+
+umount /mnt 弹出设备或挂载点
+fuser -m /mnt 查看哪些进程在使用/mnt挂载的文件系统
+lsof /mnt 查看哪些文件在被使用 （ls open file）
+
+/etc/fstab 定义哪些磁盘需要自动挂载
+挂载设备 挂载点 文件系统 挂在选项 dump,fsck相关选项
+/dev/sdb1 /mnt ext3 defaults 0 0
+
+e2label /dev/sdb1 显示磁盘卷标
+LABEL=卷标名 代替 /dev/sdb1(设备路径)
+
+
+获取linux帮助信息
+-h 或 --help 可以获取命令的帮助
+man +命令名字 获取常用帮助
+	man ls
+	man 1 ls
+	1:用户命令 2内核系统调用 3 库函数 4特殊文件和设备 5文件格式和规范 6游戏 7规范标准及其他 8系统管理命令 9Linux内核命令
+
+man -k 关键字 列出包含关键字的文档...
+info 命令 更加详细的命令信息 包含实例。
+
+/usr/share/doc txt html pdf 说明文档保存doc文件夹中。
+
+
+
+
+
+
+
+ 
+linux 文本处理功能.
+cat name
+more name 
+less name
+head
+tail
+
+grep "xxx" /etc/passwd 基于关键字搜索文本 (正则表达式命令)
+find / -user EricYang | grep Video
+grep -i "xxx" /etc/passwd 搜索忽略大小写
+grep -n "xxx" /etc/passwd 显示结果处于文件的哪行
+grep -v "xxx" /etc/passwd 显示不包含关键字的信息
+grep -Ax "xxx" /etc/passwd 输出时包含结果所在行之后的指定行数x
+grep -Bx "xxx" /etc/passwd 输出时包含结果所在行之前的指定行数x
+
+基于列处理文本
+cut -d  指定分割符 默认TAB
+	-f  指定输出的列号
+	-c	基于字符进行分割
+	cut -d: -f1 /etc/passwd
+	cut -c2-6 /etc/passwd
+
+wc filename 
+行数 单词数 字符数
+wc	-l 只统计行数
+	-w 只统计单词数
+	-c 只统计字节数
+	-m 只统计字符数
+	
+文本排序
+sort filename 对文件内容排序， 基于每行首字母
+sort	-r 	倒序
+		-n 	基于数字进行排序
+		-f	忽略大小写
+		-u	删除重复行
+		-t c 使用c作为分隔符为列进行排序
+		-k x 当进行基于指定地府分割味蕾的排序时，指定基于哪个列排序
+
+sort -u	可以用于删除重复行
+uniq filename 默认情况只能删除相邻的重复行
+diff filename1 filename2 
+-i 忽略大小写
+-b 忽略空格数量的改变
+-u 同意显示比较信息(一般用以生成patch文件)
+
+aspell 拼写检查英文
+
+转换
+tr -d "apple" < filename (只接受重定向数据流)   删除 “apple”
+tr 'a-z' 'A-Z' < filename   大小写转换
+
+搜索替换
+使用正则表达式搜索替换
+sed 's/linux/unix/g' filename      搜索文件linux替换为unix /g 一行中出现多个匹配项的时候都匹配
+sed '1,50s/linux/unix/g' filename  1-50行 搜索文件linux替换为unix
+sed -e 's/linux/unix/g' -e 's/nash/nash_su/g' filename 指定多个pattern
+sed -f sededit filename   sededit 文件保存匹配pttern 用以重复使用
+
+
+
+
+RPM 软件管理
+
+1.绝大多数开源软件直接以源代码形式发布.
+2.源代码一般被打包成tar.gz 归档压缩文件
+3.程序源代码需要编译成二进制形式后才能够运行使用
+4.源代码编译流程:
+	1. ./configure 运行此命令检查编译环境.相关库文件以及配置参数并生成makefile
+	2. make 		基于makefile对源代码进行编译，生成可执行文件
+	3. make install	将生成的可执行文件安装到当前计算机中
+	
+RPM:redhat package manager
+softwarename-versionnum.platform.64or32.rpm
+
+RPM 命令
+安装: rpm -i software.rpm
+卸载: rpm -e software
+升级: rpm -u software-new.rpm
+
+网络: rpm -ivh 网址
+-v 显示详细信息
+-h 显示进度条
+
+rpm 查询功能
+rpm -qa 显示所有以rpm安装的软件
+rpm -qi softwarename 显示软件基本信息
+rpm -ql softwarename 显示安装了哪些文件
+rpm -qf /usr/bin/linuxcast 显示文件是哪个软件安装的
+rpm -qip filename.rpm 查询rpm文件的信息
+rpm -qlp filename.rpm 查询rpm文件包含的文件 
+
+rpm 验证功能
+导入密钥:
+rpm --import RPM-GPG-KEY-CentOS-6 一般以及加载了
+rpm -K software.rpm 验证rpm文件
+rpm -V software 验证已安装软件
+
+
+
+YUM 软件管理
+rpm 需要手工解决软件包的依赖关系的
+YUM rpm 的前端程序，解决依赖关系问题
+1.自动解决依赖关系
+2.对RPM进行分组，并基于组惊喜安装操作
+3.映入仓库概念，支持多个仓库
+4.配置简单
+
+
+YUM 引入仓库概念解决依赖关系，自动在仓库中查找依赖软件并安装
+仓库可以是本地的也可以通过http,ftp或NFS形式使用集中的同意的网络仓库
+
+yum 仓库配置文件/etc/yum.repos.d/目录下,格式如下:
+[仓库简写名字]
+name= 仓库的描述
+baseurl= net address or local address
+enabled=1
+gpgcheck=1 是否打开校验
+
+mirrorlist=address 动态链接配置baseurl
+
+yum配置文件必须以.repo结尾
+一个配置文件内可以保存多个仓库配置信息
+/etc/yum.repos.d/目录下可以存在多个配置文件
+
+yum install softwarename	安装
+yum remove softwarename		删除
+yum update softwarename		升级
+
+yum search keyword		搜索
+yum list(all\install\recent\updates)列出全部、安装的、最近的、软件跟新
+yum info packagename 	显示指定软件信息
+yum whatprovides filename 查询文件属于哪个软件包
+
+
+
+创建yum仓库
+1.将所有rpm文件拷贝到一个文件夹中
+2.通过rpm命令手工安装createrepo软件
+3.运行命令createrepo -v /rpm-directory
+4.若有分组信息，则以-g 参数指定分组文件
+	createrepo -g /tmp/*comps.xml /rpm-directory

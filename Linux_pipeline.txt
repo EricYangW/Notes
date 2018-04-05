@@ -1,0 +1,30 @@
+不要重复发明轮子
+管道和重定向
+多命令协作:通过管道和重定向完成.(将多个命令结合在一起)
+几乎所有命令的输入和返回输出是纯文本
+example cat 输入 文件路径 返回 文件文本内容
+
+命令行shell的数据流定义:
+名称		说明		编号		默认
+STDIN		标准输入	0			键盘
+STDOUT		标准输出	1			终端
+STDERR		标准错误	2			终端
+
+命令通过STDIN接收参数或数据，通过STDOUT输出结果或通过STDERR输出错误
+
+分类		关键字			定义							例子
+			>				将STDOUT重定向到文件(覆盖)		echo "baidu" > outfile
+															ls > outfile
+			>>				将STDOUT重定向到文件(追加)		echo "baidu" >> outfile
+重定向															date >>outfile
+			2>				将STDERROR重定向到文件(覆盖)	ls nothere 2> errorout
+			2>&1			将STDERROR与STDOUT结合			ls nothere 2>&1 alloutput
+			<				重定向STDIN						grep linuxcast < /etc/passwd
+			
+管道 		|				将一个命令的STDOUT 				ls -l | grep linuxcast
+							作为另一个命令的STDIN			find / -user linuxcast | grep video
+							
+
+2> /dev/null  重定向给null,丢弃
+
+

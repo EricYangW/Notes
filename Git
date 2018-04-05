@@ -129,7 +129,7 @@ git commit -a -m "description" 先缓存在提交
 
 v1-v2-v3-v4-v5
 v5->v2
-git reset HEAD~3
+git reset HEAD^3
 git reset v5 回到v5版
 
  远程仓库:
